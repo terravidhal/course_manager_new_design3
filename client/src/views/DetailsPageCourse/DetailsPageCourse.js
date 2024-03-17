@@ -117,29 +117,45 @@ const DetailsPageCourse = () => {
             <p><span className='infos'>status:</span> {OneCourse.status} minutes</p>
         </div> */}
 
-            <div class="video-container">
-                 <div class="video">
-                    <video src="images/vid-1.mp4" controls poster="images/post-1-1.png" id="video"></video>
+            <div class="img-container">
+                 <div class="img">
+                     <div className="img-img">
+                       <img src="/assets/images/thumb-1.png" alt="" />
+                     </div>
+                     <div className="img-infos">
+                        <p><span className='infos'><i class="fa-solid fa-user-graduate"></i></span>{OneCourse.level}</p>
+                        <p><span className='infos'><i class="fa-solid fa-book-open"></i></span> {OneCourse.typeOfCourse}</p>
+                        <p>
+                          <span className='infos'><i class="fa-solid fa-users"></i></span>
+                          <a href={OneCourse.linkMeeting} target='_blank'>{OneCourse.linkMeeting}</a>
+                        </p>
+                        <p>
+                          <span className='infos'><i class="fa-solid fa-file-pdf"></i></span>
+                          <a href={OneCourse.documentsLink} target='_blank'>{OneCourse.documentsLink}</a>
+                        </p>
+                        <p><span className='infos'><i class="fa-regular fa-clock"></i></span> {OneCourse.startTime}</p>
+                     </div>
+                     <div className="img-infos-2">
+                        <p><span className='infos'><i class="fa-solid fa-clock-rotate-left"></i></span> {OneCourse.endTime}</p>
+                        <p><span className='infos'><i class="fa-solid fa-hourglass-start"></i></span> {OneCourse.duration} minutes</p>
+                     </div>
                  </div>
                  <h3 class="title">complete HTML tutorial (part 01)</h3>
                  <div class="info">
                     <p class="date"><i class="fas fa-calendar"></i><span>22-10-2022</span></p>
-                    <p class="date"><i class="fas fa-heart"></i><span>44 likes</span></p>
                  </div>
                  <div class="tutor">
-         <img src="images/pic-2.jpg" alt=""/>
-         <div>
-            <h3>john deo</h3>
-            <span>developer</span>
-         </div>
+                     <div className="bloc-tutor">
+                      <img src="/assets/images/pic-1.jpg" alt="" />
+                     </div>
+                    <div>
+                       <h3>john deo</h3>
+                       <span>instructor</span>
+                    </div>
                  </div>
-                 <form action="" method="post" class="flex">
-         <a href="playlist.html" class="inline-btn">view playlist</a>
-         <button><i class="far fa-heart"></i><span>like</span></button>
-                 </form>
                  <p class="description">
-         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque labore ratione, hic exercitationem mollitia obcaecati culpa dolor placeat provident porro.
-         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid iure autem non fugit sint. A, sequi rerum architecto dolor fugiat illo, iure velit nihil laboriosam cupiditate voluptatum facere cumque nemo!
+                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque labore ratione, hic exercitationem mollitia obcaecati culpa dolor placeat provident porro.
+                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid iure autem non fugit sint. A, sequi rerum architecto dolor fugiat illo, iure velit nihil laboriosam cupiditate voluptatum facere cumque nemo!
                  </p>
              </div>
         { userObjsRole === 'student' ?

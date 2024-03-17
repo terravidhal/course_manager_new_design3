@@ -1,14 +1,12 @@
-/* .DetailsPageCourse {
+.DetailsPageCourse {
   background-color: var(--white);
   height: 100vh;
 }
+.DetailsPageCourse .page-top {
+  background-color: var(--white);
+}
 .DetailsPageCourse .page-top h1 {
   color: var(--color-theme);
-}
-.DetailsPageCourse .page-content {
-  display: flex;
-  gap: 20px;
-  align-items: center;
 }
 .DetailsPageCourse .details-img {
   flex: 1;
@@ -26,6 +24,15 @@
   color: var(--color-theme);
   margin-right: 10px;
 }
+.DetailsPageCourse .img-container p {
+  display: flex;
+  align-items: center;
+}
+.DetailsPageCourse .img-container p span.infos i{
+  color: var(--color-theme);
+  font-size: 2rem;
+  margin-right: 20px;
+}
 .DetailsPageCourse .page-top {
   display: flex;
   justify-content: space-between;
@@ -38,19 +45,82 @@
   color: gray;
 }
 .DetailsPageCourse .page-content {
-  padding: 20px 0;
+  padding: 20px;
   margin: 0px auto;
   padding-bottom: 40px;
   width: 70%;
+  background-color: var(--white);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
 }
 .DetailsPageCourse span.infos {
   font-weight: bold;
+  color: var(--black);
 }
 .DetailsPageCourse .page-top a {
   font-size: 1.5rem;
   color: var(--oranges);
   font-weight: bold;
 }
+.DetailsPageCourse .img-container .img {
+ display: flex;
+ gap: 20px;
+}
+.DetailsPageCourse .img-container .img .img-img{
+  flex: 1;
+}
+.DetailsPageCourse .img-container .img .img-infos{
+  flex: 0.7;
+}
+.DetailsPageCourse .img-container .img .img-infos-2{
+  flex: 0.5;
+}
+.DetailsPageCourse .img-container img  {
+ width: 100%;
+ border-radius: 5px;
+}
+.DetailsPageCourse .img-container .info {
+  border-bottom: var(--border);
+}
+.DetailsPageCourse .img-container  .info p span {
+  color: var(--light-color);
+}
+.DetailsPageCourse .img-container .title{
+  color: var(--black);
+}
+.DetailsPageCourse .img-container .info i{
+  color: var(--color-theme);
+  margin-right: 1rem;
+}
+.DetailsPageCourse .img-container .tutor span  {
+  color: var(--light-color);
+}
+.DetailsPageCourse .img-container .tutor .bloc-tutor  {
+  height: 80px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+}
+.DetailsPageCourse .img-container .tutor img {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+}
+.DetailsPageCourse .img-container .tutor  {
+   display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.DetailsPageCourse .img-container .tutor h3 {
+   margin: 5px  0;
+   color: var(--black);
+}
+.DetailsPageCourse .img-container .description {
+    line-height: 1.5;
+    color: var(--light-color);
+}
+
 
 @media (max-width: 991px) {
   .DetailsPageCourse .page-top {
@@ -65,9 +135,9 @@
     width: 200px;
     border-radius: 5px;
   }
-} */
+}
 
-
+/* 
 .DetailsPageCourse .watch-video .video-container{
   background-color: var(--white);
   border-radius: .5rem;
@@ -79,7 +149,7 @@
   margin-bottom: 1.5rem;
 }
 
-.DetailsPageCourse .watch-video .video-container .video video{
+.DetailsPageCourse .watch-video .video-container .video img{
   border-radius: .5rem;
   width: 100%;
   object-fit: contain;
@@ -180,4 +250,4 @@
   font-size: 1.7rem;
   color: var(--light-color);
   margin-top: 2rem;
-}
+} */
