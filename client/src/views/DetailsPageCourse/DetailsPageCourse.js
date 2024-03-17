@@ -168,7 +168,7 @@ console.log(contientCSS);
                     </div>
                  </div>
                  <p class="description">
-                   {OneCourse.description}
+                   {OneCourse.course.description}
                  </p>
              </div>
       </div>

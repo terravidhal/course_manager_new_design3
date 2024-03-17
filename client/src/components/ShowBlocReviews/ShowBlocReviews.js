@@ -57,7 +57,40 @@ const ShowBlocReviews = (props) => {
                            <div class="user">
                                <img src={"/assets/images/pic-"+getRandomNumberBetween1And9()+".jpg"} alt="" />
                                <div>
+                                <div className="name-stars">
                                   <h3>{OneReview.studentId.name}</h3>
+                                  <div class="stars">
+                                      {OneReview.rating === 1 ?
+                                        <i class="fas fa-star"></i>
+                                        : OneReview.rating === 2 ?
+                                        <>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        </>
+                                        :  OneReview.rating === 3 ?
+                                        <>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        </>
+                                        :  OneReview.rating === 4 ?
+                                        <>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        </>
+                                        :  OneReview.rating === 5 ?
+                                        <>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        </> : null
+                                      }
+                                  </div>
+                                </div>
                                   <span>{handleChange(OneReview.createdAt)}</span>
                                </div>
                            </div>
