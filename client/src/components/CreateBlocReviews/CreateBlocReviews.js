@@ -59,12 +59,6 @@ const CreateBlocReviews = (props)=>{
   
   return(
     <div className="CreateBlocReviews">
-      {/* <div className="page-top">
-        <h2>create instuctor</h2>
-        <Link to="/admin-dashboard">
-          <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-        </Link>
-      </div> */}
       <form onSubmit={create}>
         <div className="field">
           <input type="hidden" name="studentId" value={user.studentId}  onChange = {(e)=>handleChange(e)}/>
@@ -72,13 +66,17 @@ const CreateBlocReviews = (props)=>{
         <div className="field">
           <input type="hidden" name="courseId" value={user.courseId}  onChange = {(e)=>handleChange(e)}/>
         </div>
-        <div className="field">
-          <label>Rating</label>
-          {/* {
-            errs.rating?
-            <span className="error-text">{errs.rating.message}</span>
+        <div className="field f-textarea">
+          <h3>add comments</h3>
+          {
+            errs.reviewText?
+            <span className="error-text" style={{color:"#f79623",fontWeight:"bold"}}>{errs.reviewText.message}</span>
             :null
-          } */}
+          }
+          <textarea name="reviewText" placeholder="enter your comment" value={user.reviewText} id="" cols="30" rows="10" onChange={(e)=> handleChange(e)}></textarea>
+        </div>
+        <div className="field f-rating">
+          <label>Rating</label>
           <select name="rating" id="" value={user.rating} onChange = {(e)=>handleChange(e)}>
               <option value={1}>1</option>
               <option value={2}>2</option>
@@ -87,16 +85,7 @@ const CreateBlocReviews = (props)=>{
               <option value={5}>5</option>
           </select>
         </div>
-        <div className="field">
-          <label>Review Text</label>
-          {
-            errs.reviewText?
-            <span className="error-text" style={{color:"#f79623",fontWeight:"bold"}}>{errs.reviewText.message}</span>
-            :null
-          }
-          <textarea name="reviewText" value={user.reviewText} id="" cols="30" rows="10" onChange={(e)=> handleChange(e)}></textarea>
-        </div>
-        <button type="submit">create</button>
+        <button type="submit">add comment</button>
       </form>
     </div>
   );

@@ -21,7 +21,7 @@ const ShowBlocReviews = (props) => {
   //const navigate = useNavigate();
   //const [loaded, setLoaded] = useState(false); 
 
-  const {arrReviews, loaded, deleteReview} = props;
+  const {arrReviews, loaded, deleteReview, userObjsId} = props;
 
   const [dateString, setDateString] = useState(""); 
 
@@ -42,52 +42,65 @@ const ShowBlocReviews = (props) => {
      return formattedDate;
   }
 
+  const getRandomNumberBetween1And9 = () => {
+    // Générer un nombre aléatoire entre 0 et 0.999999...
+    const randomFloat = Math.random();
+  
+    // Multiplier par 9 pour obtenir un nombre entre 0 et 9
+    const randomNumber = randomFloat * 9;
+  
+    // Arrondir au nombre entier le plus proche
+    const roundedNumber = Math.floor(randomNumber) + 1;
+  
+    // Renvoyer le nombre aléatoire entre 1 et 9
+    return roundedNumber;
+  }
+
+  const randomNumber = getRandomNumberBetween1And9();
+  const imageURL = `<img src="/assets/images/pic-${randomNumber}.jpg" alt="" />`;
 
 
  
   return(
     <div className="ShowBlocReviews">
-      {/* <div className="page-top">
-        <h1>Details Courses</h1>
-        {
-            userObjsRole === 'admin' ? (
-                <Link to="/admin-dashboard">
-                    <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-                </Link>
-            ) : userObjsRole === 'student' ? (
-                <Link to="/student-dashboard">
-                    <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-                </Link>
-            ) : (
-                <Link to="/instructor-dashboard">
-                    <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-                </Link>
-            )
-        }
-      </div>    */}
-      
-        
         <div className="page-contents">
              { arrReviews.map((OneReview,index) => {
             return(
               <>
-                <div className="fields"  key={index}>
+                 {/*<div className="fields"  key={index}>
                     <div className="details-img">
-                      {/* <img src="/assets/images/OIG1.jfif" alt="" /> */}
+                       <img src="/assets/images/OIG1.jfif" alt="" /> 
                     </div>
                    <p><span className='infos'>name student:</span>{OneReview.studentId.name}</p>
                    <p><span className='infos'>Level student:</span>{OneReview.studentId.fieldOfStudy}</p>
                    <p><span className='infos'>comment::</span>{OneReview.reviewText}</p>
                    <p><span className='infos'>date::</span>{handleChange(OneReview.createdAt)}</p>
                    <p><span className='infos'>rating:</span> {OneReview.rating}</p>
-                   <button onClick={() => deleteReview(OneReview._id)}>Delete comment</button>
-                </div>
+                   <button onClick={() => deleteReview(OneReview._id)}>Delete comment</button> 
+                </div>*/}
+                    <div class="box-container"  key={index}>
+                       <div class="box">
+                           <div class="user">
+                               {/* <img src="/assets/images/pic-{getRandomNumberBetween1And9()}.jpg" alt="" /> */}
+                               <img src="/assets/images/pic-1.jpg" alt="" />
+                               <div>
+                                  <h3>{OneReview.studentId.name}</h3>
+                                  <span>{handleChange(OneReview.createdAt)}</span>
+                               </div>
+                           </div>
+                           <div class="comment-box">{OneReview.reviewText}</div>
+                           {userObjsId === OneReview.studentId._id ?
+                              <form action="" class="flex-btn">
+                                 <button name="delete_comment" class="inline-delete-btn" onClick={() => deleteReview(OneReview._id)}>Delete comment</button> 
+                              </form>
+                              : null
+                           }
+                       </div>
+                    </div>
               </>
             );
           }) }
         </div>
-
-      
     </div>
   );
 };

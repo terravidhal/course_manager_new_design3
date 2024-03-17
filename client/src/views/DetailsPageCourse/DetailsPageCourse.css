@@ -51,7 +51,13 @@
   width: 70%;
   background-color: var(--white);
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-  border-radius: 5px;
+  border-radius: .5rem;
+  margin-bottom: 10px;
+}
+.DetailsPageCourse .page-content  h1 {
+  color: var(--black);
+  border-bottom: var(--border);
+  padding-bottom: 10px;
 }
 .DetailsPageCourse span.infos {
   font-weight: bold;

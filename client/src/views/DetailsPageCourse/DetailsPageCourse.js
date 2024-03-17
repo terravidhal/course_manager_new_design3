@@ -158,11 +158,21 @@ const DetailsPageCourse = () => {
                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid iure autem non fugit sint. A, sequi rerum architecto dolor fugiat illo, iure velit nihil laboriosam cupiditate voluptatum facere cumque nemo!
                  </p>
              </div>
-        { userObjsRole === 'student' ?
+        {/* { userObjsRole === 'student' ?
          <CreateBlocReviews loadedArrReview={loadedArrReview} handleReviewCreated={handleReviewCreated} idCourse={id} userObjsId={userObjsId} />
         : null
         }
-        <ShowBlocReviews arrReviews={arrReviews} loaded={loaded} deleteReview={deleteReview} />
+        <ShowBlocReviews arrReviews={arrReviews} loaded={loaded} deleteReview={deleteReview} /> */}
+      </div>
+      <div className="page-content">
+        { userObjsRole === 'student' ?
+         <CreateBlocReviews loadedArrReview={loadedArrReview} handleReviewCreated={handleReviewCreated} idCourse={id} userObjsId={userObjsId} />
+         : null
+        }
+      </div>
+      <div className="page-content">
+        <h1 className='headind'>5 Comments</h1>
+        <ShowBlocReviews userObjsId={userObjsId} arrReviews={arrReviews} loaded={loaded} deleteReview={deleteReview} />
       </div>
     </div>
   );
