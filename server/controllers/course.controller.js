@@ -1,10 +1,12 @@
 const Course = require("../models/course.model");
 
 const StudentModel = require("../models/student.model");
+const InstructorModel = require("../models/instructor.model");
+const AdminModel = require("../models/admin.model");
 
 module.exports.findAllCourses = (req, res) => {
-  console.log("req.role", req.role);
-  console.log("req.Isinstrucor", req.isInstructor);
+ // console.log("req.role", req.role);
+ // console.log("req.Isinstrucor", req.isInstructor);
   Course.find()
     .sort({ name: 1 })
     .then((allDaCourses) => {
@@ -52,6 +54,46 @@ module.exports.findOneSingleCourse = (req, res) => {
       res.status(400).json(err);
     });
 };
+
+
+
+module.exports.findOneSingleCourse2 = async (req, res) => {
+  try {
+    const oneSingleCourse = await Course.findOne({ _id: req.params.id });
+
+    if (!oneSingleCourse) {
+      return res.status(400).json({ message: "No courses found with this ID" });
+    }
+
+    const instructorId = oneSingleCourse.instructor;
+
+    let oneSingleUser = await InstructorModel.findById(instructorId);
+
+    if (oneSingleUser) {
+      const combinedResponse = {
+        oneSingleCourse: oneSingleCourse,
+        oneSingleUser: oneSingleUser
+      };
+      res.json(combinedResponse);
+    } else {
+       oneSingleUser = await AdminModel.findById(instructorId);
+
+      if (oneSingleUser) {
+        const combinedResponse = {
+          course: oneSingleCourse,
+          oneSingleUser: oneSingleUser
+        };
+        res.json(combinedResponse);
+      } else {
+        return res.status(400).json({ message: "No instructors or admins found with this ID" });
+      }
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ message: "An error has occurred" });
+  }
+};
+
 
 module.exports.createNewCourse = (req, res) => {
   Course.create(req.body)

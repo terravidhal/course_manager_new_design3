@@ -37,8 +37,8 @@ const ShowBlocReviews = (props) => {
      const day = date.getDate()
    
      const formattedDate = `${day}-${month.toString().padStart(2, '0')}-${year}`; // 
-     console.log(month); // Affiche "16-03-2024"  */
-     console.log(formattedDate); // Affiche "16-03-2024"  */
+   //  console.log(month); // Affiche "16-03-2024"  */
+    // console.log(formattedDate); // Affiche "16-03-2024"  */
      return formattedDate;
   }
 
@@ -91,7 +91,7 @@ const ShowBlocReviews = (props) => {
                            <div class="comment-box">{OneReview.reviewText}</div>
                            {userObjsId === OneReview.studentId._id ?
                               <form action="" class="flex-btn">
-                                 <button name="delete_comment" class="inline-delete-btn" onClick={() => deleteReview(OneReview._id)}>Delete comment</button> 
+                                 <button name="delete_comment" class="inline-delete-btn" onClick={(ev) => deleteReview(OneReview._id, ev)}>Delete comment</button> 
                               </form>
                               : null
                            }

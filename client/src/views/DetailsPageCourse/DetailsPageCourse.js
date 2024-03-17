@@ -28,10 +28,10 @@ const DetailsPageCourse = () => {
   useEffect(() => {
     axios.get("http://localhost:8000/api/courses/" + id,{withCredentials: true})
         .then( res => {
-          console.log("u++++++++++",res.data.oneSingleCourse);
-          setOneCourse(res.data.oneSingleCourse);
+          console.log("u++++++++++",res.data);
+          setOneCourse(res.data);
           setLoaded(true); 
-          console.log("y++++++++++",OneCourse.students);
+         // console.log("y++++++++++",OneCourse.students);
         })
         .catch( err => console.log(err) );
   }, [id]); 
@@ -42,14 +42,15 @@ const DetailsPageCourse = () => {
         .then( res => {
           console.log("reviewsby course++++++++++",res.data.reviews);
           setArrReviews(res.data.reviews);
-          setLoaded(true); 
-          //console.log("y++++++++++",OneCourse.students);
+        //  setLoaded(true); 
+          console.log("OneCourse++++++++++",OneCourse);
         })
         .catch( err => console.log(err) );
   }, [loadedArrReview]); 
 
    // delete One specific review
-   const deleteReview = (reviewId) => {
+   const deleteReview = (reviewId,ev) => {
+    ev.preventDefault();
     axios
       .delete("http://localhost:8000/api/reviews/" + reviewId, {
         withCredentials: true,
@@ -63,7 +64,7 @@ const DetailsPageCourse = () => {
 
 
   const handleReviewCreated = (val) => {
-    setLoadedArrReview(val); // Update arrReviews with the new review
+    setLoadedArrReview(val); // Update arrReviews with the new value
   };
 
    
@@ -75,6 +76,8 @@ const DetailsPageCourse = () => {
  
   return(
     <div className="DetailsPageCourse">
+      {loaded === true ?
+         <>
       <div className="page-top">
         <h1>Details Courses</h1>
         {
@@ -94,86 +97,59 @@ const DetailsPageCourse = () => {
         }
       </div>   
       <div className="page-content">
-        {/* <div className="details-img">
-          <img src="/assets/images/OIG1.jfif" alt="" />
-        </div>
-        <div className="fields">
-            <p><span className='infos'>Level:</span>{OneCourse.level}</p>
-            <p><span className='infos'>field:</span>{OneCourse.field}</p>
-            <p><span className='infos'>description:</span> {OneCourse.description}</p>
-            <p><span className='infos'>dayOfWeek:</span> {OneCourse.dayOfWeek}</p>
-            <p><span className='infos'>type Of Course:</span> {OneCourse.typeOfCourse}</p>
-            <p>
-              <span className='infos'>link Meeting:</span>
-              <a href={OneCourse.linkMeeting} target='_blank'>{OneCourse.linkMeeting}</a>
-            </p>
-            <p>
-              <span className='infos'>documents Link:</span>
-              <a href={OneCourse.documentsLink} target='_blank'>{OneCourse.documentsLink}</a>
-            </p>
-            <p><span className='infos'>start Time:</span> {OneCourse.startTime}</p>
-            <p><span className='infos'>end Time:</span> {OneCourse.endTime}</p>
-            <p><span className='infos'>duration:</span> {OneCourse.duration} minutes</p>
-            <p><span className='infos'>status:</span> {OneCourse.status} minutes</p>
-        </div> */}
-
             <div class="img-container">
                  <div class="img">
                      <div className="img-img">
                        <img src="/assets/images/thumb-1.png" alt="" />
                      </div>
                      <div className="img-infos">
-                        <p><span className='infos'><i class="fa-solid fa-user-graduate"></i></span>{OneCourse.level}</p>
-                        <p><span className='infos'><i class="fa-solid fa-book-open"></i></span> {OneCourse.typeOfCourse}</p>
+                        <p><span className='infos'><i class="fa-solid fa-user-graduate"></i></span>{OneCourse.course.level}</p>
+                        <p><span className='infos'><i class="fa-solid fa-book-open"></i></span> {OneCourse.course.typeOfCourse}</p>
                         <p>
                           <span className='infos'><i class="fa-solid fa-users"></i></span>
-                          <a href={OneCourse.linkMeeting} target='_blank'>{OneCourse.linkMeeting}</a>
+                          <a href={OneCourse.linkMeeting} target='_blank'>{OneCourse.course.linkMeeting}</a>
                         </p>
                         <p>
                           <span className='infos'><i class="fa-solid fa-file-pdf"></i></span>
-                          <a href={OneCourse.documentsLink} target='_blank'>{OneCourse.documentsLink}</a>
+                          <a href={OneCourse.documentsLink} target='_blank'>{OneCourse.course.documentsLink}</a>
                         </p>
-                        <p><span className='infos'><i class="fa-regular fa-clock"></i></span> {OneCourse.startTime}</p>
+                        <p><span className='infos'><i class="fa-regular fa-clock"></i></span> {OneCourse.course.startTime}</p>
                      </div>
                      <div className="img-infos-2">
-                        <p><span className='infos'><i class="fa-solid fa-clock-rotate-left"></i></span> {OneCourse.endTime}</p>
-                        <p><span className='infos'><i class="fa-solid fa-hourglass-start"></i></span> {OneCourse.duration} minutes</p>
+                        <p><span className='infos'><i class="fa-solid fa-clock-rotate-left"></i></span> {OneCourse.course.endTime}</p>
+                        <p><span className='infos'><i class="fa-solid fa-hourglass-start"></i></span> {OneCourse.course.duration} minutes</p>
                      </div>
                  </div>
-                 <h3 class="title">complete HTML tutorial (part 01)</h3>
+                 <h3 class="title">{OneCourse.course.name}</h3>
                  <div class="info">
-                    <p class="date"><i class="fas fa-calendar"></i><span>22-10-2022</span></p>
+                    <p class="date"><i class="fas fa-calendar"></i><span>{OneCourse.course.dayOfWeek}</span></p>
                  </div>
                  <div class="tutor">
                      <div className="bloc-tutor">
                       <img src="/assets/images/pic-1.jpg" alt="" />
                      </div>
                     <div>
-                       <h3>john deo</h3>
+                       <h3>{OneCourse.oneSingleUser.name}</h3>
                        <span>instructor</span>
                     </div>
                  </div>
                  <p class="description">
-                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque labore ratione, hic exercitationem mollitia obcaecati culpa dolor placeat provident porro.
-                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid iure autem non fugit sint. A, sequi rerum architecto dolor fugiat illo, iure velit nihil laboriosam cupiditate voluptatum facere cumque nemo!
+                   {OneCourse.description}
                  </p>
              </div>
-        {/* { userObjsRole === 'student' ?
-         <CreateBlocReviews loadedArrReview={loadedArrReview} handleReviewCreated={handleReviewCreated} idCourse={id} userObjsId={userObjsId} />
-        : null
-        }
-        <ShowBlocReviews arrReviews={arrReviews} loaded={loaded} deleteReview={deleteReview} /> */}
       </div>
-      <div className="page-content">
         { userObjsRole === 'student' ?
-         <CreateBlocReviews loadedArrReview={loadedArrReview} handleReviewCreated={handleReviewCreated} idCourse={id} userObjsId={userObjsId} />
+         <div className="page-content">
+           <CreateBlocReviews loadedArrReview={loadedArrReview} handleReviewCreated={handleReviewCreated} idCourse={id} userObjsId={userObjsId} />
+         </div>
          : null
         }
-      </div>
       <div className="page-content">
-        <h1 className='headind'>5 Comments</h1>
+        <h1 className='headind'>{arrReviews.length} Comments</h1>
         <ShowBlocReviews userObjsId={userObjsId} arrReviews={arrReviews} loaded={loaded} deleteReview={deleteReview} />
       </div>
+         </>
+      :null}
     </div>
   );
 };

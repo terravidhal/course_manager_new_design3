@@ -27,6 +27,7 @@
 .DetailsPageCourse .img-container p {
   display: flex;
   align-items: center;
+  color: var(--black);
 }
 .DetailsPageCourse .img-container p span.infos i{
   color: var(--color-theme);
