@@ -71,7 +71,7 @@ module.exports.findOneSingleCourse2 = async (req, res) => {
 
     if (oneSingleUser) {
       const combinedResponse = {
-        oneSingleCourse: oneSingleCourse,
+        course: oneSingleCourse,
         oneSingleUser: oneSingleUser
       };
       res.json(combinedResponse);

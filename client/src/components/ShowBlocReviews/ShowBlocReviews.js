@@ -7,38 +7,14 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 
 const ShowBlocReviews = (props) => {
 
-//   const userObjs = JSON.parse(localStorage.getItem('USER_OBJ')) || {};
-//   const userObjsRole = userObjs.role || 'default';
-//   const userObjsId = userObjs._id || 'default';
-  
-//   console.log("userObjRole+++++++++", userObjsRole);
-//   console.log("userObjsId+++++++++", userObjsId);
-
-
-
-  //const [OneReview, setOneReview] = useState({})
-  //const {id} = useParams(); 
-  //const navigate = useNavigate();
-  //const [loaded, setLoaded] = useState(false); 
-
-  const {arrReviews, loaded, deleteReview, userObjsId} = props;
-
-  const [dateString, setDateString] = useState(""); 
+  const {arrReviews, deleteReview, userObjsId, userObjsRole} = props;
 
   const handleChange = (val)=>{
-    //setDateString(val );
-    
-    // const [dateString, setDateString] = useState(""); 
-    // const dateString = "2024-03-16T14:46:31.674Z";
      const date = new Date(val);
-   
      const year = date.getFullYear();
      const month = date.getMonth() + 1; // Les mois sont indexés de 0
      const day = date.getDate()
-   
-     const formattedDate = `${day}-${month.toString().padStart(2, '0')}-${year}`; // 
-   //  console.log(month); // Affiche "16-03-2024"  */
-    // console.log(formattedDate); // Affiche "16-03-2024"  */
+     const formattedDate = `${day}-${month.toString().padStart(2, '0')}-${year}`; 
      return formattedDate;
   }
 
@@ -89,7 +65,7 @@ const ShowBlocReviews = (props) => {
                                </div>
                            </div>
                            <div class="comment-box">{OneReview.reviewText}</div>
-                           {userObjsId === OneReview.studentId._id ?
+                           {userObjsId === OneReview.studentId._id || userObjsRole === 'admin' ||  userObjsRole === 'instructor' ?
                               <form action="" class="flex-btn">
                                  <button name="delete_comment" class="inline-delete-btn" onClick={(ev) => deleteReview(OneReview._id, ev)}>Delete comment</button> 
                               </form>

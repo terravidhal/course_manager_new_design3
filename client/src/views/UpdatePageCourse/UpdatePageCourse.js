@@ -17,7 +17,7 @@ const UpdatePageCourse = (props) => {
   console.log("userObjsId+++++++++", userObjsId);
 
   useEffect(() => {
-    if (userObjsRole !== 'admin' ) {
+    if (userObjsRole === 'default' ||  userObjsRole === 'student') {
            navigate('/page404NotFound'); 
     }
   }, []);
@@ -36,10 +36,10 @@ const UpdatePageCourse = (props) => {
     axios
       .get("http://localhost:8000/api/courses/" + id,{withCredentials: true})
       .then((res) => {
-        console.log("u++++++++++",res.data.oneSingleCourse);
-        setCoursObj(res.data.oneSingleCourse);
+        console.log("u++++++++++",res.data);
+        setCoursObj(res.data);
         setLoaded(true); // data available => set "true"
-        console.log("k++++++++++",coursObj.name);
+        //console.log("k++++++++++",coursObj.course.name);
       })
       .catch((err) => console.log(err));
       
@@ -94,21 +94,21 @@ const UpdatePageCourse = (props) => {
       <div className="page-content">
       {loaded === true ? 
         <CourseForm requestPostorPatch={updateCourse} 
-        initialName={coursObj.name}
-        initialLevel={coursObj.level}
-        initialDescription={coursObj.description}
-        initialTypeOfCourse={coursObj.typeOfCourse}
-        initialLinkMeeting={coursObj.linkMeeting}
-        initialDocumentsLink={coursObj.documentsLink}
-        initialInstructorId={coursObj.instructor}
+        initialName={coursObj.course.name}
+        initialLevel={coursObj.course.level}
+        initialDescription={coursObj.course.description}
+        initialTypeOfCourse={coursObj.course.typeOfCourse}
+        initialLinkMeeting={coursObj.course.linkMeeting}
+        initialDocumentsLink={coursObj.course.documentsLink}
+        initialInstructorId={coursObj.course.instructor}
         initialadminId={userObjsId}
-        initialInstructId={coursObj.instructor}
-        initialDayOfWeek={coursObj.dayOfWeek}
-        initialField={coursObj.field}
-        initialStartTime={coursObj.startTime}
-        initialEndTime={coursObj.endTime}
-        initialDuration={coursObj.duration}
-        initialStudents={coursObj.students}
+        initialInstructId={coursObj.course.instructor}
+        initialDayOfWeek={coursObj.course.dayOfWeek}
+        initialField={coursObj.course.field}
+        initialStartTime={coursObj.course.startTime}
+        initialEndTime={coursObj.course.endTime}
+        initialDuration={coursObj.course.duration}
+        initialStudents={coursObj.course.students}
         initialAvailableStudents={[]}
         userObjsRole={userObjsRole}
         errors={errors}

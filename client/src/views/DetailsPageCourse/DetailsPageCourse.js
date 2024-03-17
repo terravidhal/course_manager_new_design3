@@ -15,12 +15,9 @@ const DetailsPageCourse = () => {
   console.log("userObjRole+++++++++", userObjsRole);
   console.log("userObjsId+++++++++", userObjsId);
 
-
-
   const [OneCourse, setOneCourse] = useState({});
   const [arrReviews, setArrReviews] = useState([]);
   const {id} = useParams(); 
-  const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false); 
   const [loadedArrReview, setLoadedArrReview] = useState(false); 
 
@@ -105,13 +102,19 @@ const DetailsPageCourse = () => {
                      <div className="img-infos">
                         <p><span className='infos'><i class="fa-solid fa-user-graduate"></i></span>{OneCourse.course.level}</p>
                         <p><span className='infos'><i class="fa-solid fa-book-open"></i></span> {OneCourse.course.typeOfCourse}</p>
-                        <p>
+                        <p className='infos link'>
                           <span className='infos'><i class="fa-solid fa-users"></i></span>
-                          <a href={OneCourse.linkMeeting} target='_blank'>{OneCourse.course.linkMeeting}</a>
+                          { OneCourse.course.linkMeeting === '' ?
+                            <a href={OneCourse.course.linkMeeting} target='_blank'></a>
+                            : <a href={OneCourse.course.linkMeeting} target='_blank'>link streaming</a>
+                          }
                         </p>
-                        <p>
+                        <p className='link'>
                           <span className='infos'><i class="fa-solid fa-file-pdf"></i></span>
-                          <a href={OneCourse.documentsLink} target='_blank'>{OneCourse.course.documentsLink}</a>
+                          { OneCourse.course.documentsLink === '' ?
+                              <a href={OneCourse.course.documentsLink} target='_blank'></a>
+                              : <a href={OneCourse.course.documentsLink} target='_blank'>link files</a>
+                          }
                         </p>
                         <p><span className='infos'><i class="fa-regular fa-clock"></i></span> {OneCourse.course.startTime}</p>
                      </div>
@@ -146,7 +149,7 @@ const DetailsPageCourse = () => {
         }
       <div className="page-content">
         <h1 className='headind'>{arrReviews.length} Comments</h1>
-        <ShowBlocReviews userObjsId={userObjsId} arrReviews={arrReviews} loaded={loaded} deleteReview={deleteReview} />
+        <ShowBlocReviews userObjsId={userObjsId} userObjsRole={userObjsRole} arrReviews={arrReviews}  deleteReview={deleteReview} />
       </div>
          </>
       :null}

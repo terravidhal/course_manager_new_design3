@@ -20,7 +20,7 @@ const CreatePageCourse = () => {
 
   
   useEffect(() => {
-    if (userObjsRole !== 'admin') {
+    if (userObjsRole === 'student' || userObjsRole === 'default' ) {
       navigate('/page404NotFound'); 
     }
   }, []);
