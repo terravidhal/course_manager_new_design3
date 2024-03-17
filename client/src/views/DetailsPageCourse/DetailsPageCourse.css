@@ -82,9 +82,12 @@
 .DetailsPageCourse .img-container .img .img-img{
   flex: 1;
 }
+.DetailsPageCourse .img-container .img .img-img img.special{
+  width: 370.917px;
+  height: 247.283px;
+}
 .DetailsPageCourse .img-container .img .img-infos{
   flex: 0.7;
-  /* height: 256px; */
 }
 .DetailsPageCourse .img-container .img .img-infos-2{
   flex: 0.5;

@@ -28,7 +28,6 @@ const DetailsPageCourse = () => {
           console.log("u++++++++++",res.data);
           setOneCourse(res.data);
           setLoaded(true); 
-         // console.log("y++++++++++",OneCourse.students);
         })
         .catch( err => console.log(err) );
   }, [id]); 
@@ -39,7 +38,6 @@ const DetailsPageCourse = () => {
         .then( res => {
           console.log("reviewsby course++++++++++",res.data.reviews);
           setArrReviews(res.data.reviews);
-        //  setLoaded(true); 
           console.log("OneCourse++++++++++",OneCourse);
         })
         .catch( err => console.log(err) );
@@ -64,6 +62,18 @@ const DetailsPageCourse = () => {
     setLoadedArrReview(val); // Update arrReviews with the new value
   };
 
+  const containsWord = (string, word) => {
+    string = string.toLowerCase();
+    word = word.toLowerCase();
+    // Find the word in the string using the indexOf() method
+    const index = string.indexOf(word);
+    //Return true if the word is found (index >= 0), false otherwise
+    return index >= 0;
+  }
+
+  const t = "je donne css a toi";
+const contientCSS = containsWord(t, "css");
+console.log(contientCSS); 
    
 
    
@@ -97,7 +107,28 @@ const DetailsPageCourse = () => {
             <div class="img-container">
                  <div class="img">
                      <div className="img-img">
-                       <img src="/assets/images/thumb-1.png" alt="" />
+                      { 
+                        containsWord(OneCourse.course.name, "html") ?
+                          <img src="/assets/images/thumb-1.png" alt="" />
+                        :
+                        containsWord(OneCourse.course.name, "css") ?
+                        <img src="/assets/images/thumb-2.png" alt="" />
+                        : containsWord(OneCourse.course.name, "javascript") ?
+                          <img src="/assets/images/thumb-3.png" alt="" />
+                        :  containsWord(OneCourse.course.name, "boostrap") ?
+                           <img src="/assets/images/thumb-4.png" alt="" />
+                        : containsWord(OneCourse.course.name, "jquery") ?
+                          <img src="/assets/images/thumb-5.png" alt="" />
+                        : containsWord(OneCourse.course.name, "sass") ?  
+                          <img src="/assets/images/thumb-6.png" alt="" />
+                        : containsWord(OneCourse.course.name, "php") ?
+                          <img src="/assets/images/thumb-7.png" alt="" /> 
+                        :  containsWord(OneCourse.course.name, "mysql") ? 
+                           <img src="/assets/images/thumb-8.png" alt="" /> 
+                        :  containsWord(OneCourse.course.name, "react") ?  
+                           <img src="/assets/images/thumb-9.png" alt="" />    
+                        :  <img className='special' src="/assets/images/OIG1.jfif" alt="" /> 
+                      }
                      </div>
                      <div className="img-infos">
                         <p><span className='infos'><i class="fa-solid fa-user-graduate"></i></span>{OneCourse.course.level}</p>

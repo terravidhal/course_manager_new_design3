@@ -21,14 +21,12 @@ const ShowBlocReviews = (props) => {
   const getRandomNumberBetween1And9 = () => {
     // Générer un nombre aléatoire entre 0 et 0.999999...
     const randomFloat = Math.random();
-  
-    // Multiplier par 9 pour obtenir un nombre entre 0 et 9
-    const randomNumber = randomFloat * 9;
-  
+    // Multiplier par 9 pour obtenir un nombre entre 0 et 6
+    const randomNumber = randomFloat * 6;
     // Arrondir au nombre entier le plus proche
     const roundedNumber = Math.floor(randomNumber) + 1;
-  
     // Renvoyer le nombre aléatoire entre 1 et 9
+    console.log(roundedNumber);
     return roundedNumber;
   }
 
@@ -57,8 +55,7 @@ const ShowBlocReviews = (props) => {
                     <div class="box-container"  key={index}>
                        <div class="box">
                            <div class="user">
-                               {/* <img src="/assets/images/pic-{getRandomNumberBetween1And9()}.jpg" alt="" /> */}
-                               <img src="/assets/images/pic-1.jpg" alt="" />
+                               <img src={"/assets/images/pic-"+getRandomNumberBetween1And9()+".jpg"} alt="" />
                                <div>
                                   <h3>{OneReview.studentId.name}</h3>
                                   <span>{handleChange(OneReview.createdAt)}</span>
