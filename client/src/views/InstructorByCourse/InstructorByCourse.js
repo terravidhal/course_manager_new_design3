@@ -57,14 +57,18 @@ const InstructorByCourse = () => {
       </div>  
       <div className="page-content">
           { loaded === true ? 
+          // <>
+          // <div className="details-img">
+          //  <img src="/assets/images/instruct.jfif" alt="" /> 
+          // <img src="/assets/images/image_2.jpg.webp" alt="" />
+          // </div>
+          // <div className="fields">
+          //      <p><span className='infos'>name:</span>&nbsp;{InstructByCourse.name}</p>
+          //      <p><span className='infos'>email:</span>&nbsp;{InstructByCourse.email}</p>
+          // </div>
+          // </>
           <>
-          <div className="details-img">
-          <img src="/assets/images/instruct.jfif" alt="" />
-         </div>
-          <div className="fields">
-               <p><span className='infos'>name:</span>&nbsp;{InstructByCourse.name}</p>
-               <p><span className='infos'>email:</span>&nbsp;{InstructByCourse.email}</p>
-          </div>
+              
           </>
           : null }
       </div>
