@@ -69,3 +69,147 @@
     border-radius: 5px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+:root{
+    --bg: #222831;
+    --blue: #00FFF5;
+}
+
+
+
+
+.InstructorByCourse #btn{
+    all: unset;
+    cursor: pointer;
+    transition: .5s ease-out;
+
+    display: none;
+}
+
+.InstructorByCourse #btn:hover{
+    transform: rotate(180deg);
+    color: var(--blue);
+}
+
+.InstructorByCourse .s-container{
+    min-height: 80vh;
+    width: 90%;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+}
+
+.InstructorByCourse img{
+    width: 350px;
+    border-radius: 7px;
+}
+
+.InstructorByCourse .content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    max-width: 40%;
+}
+
+.InstructorByCourse .subtitle{
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+
+.InstructorByCourse .title{
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 3rem;
+    margin-bottom: 1rem;
+}
+
+.InstructorByCourse .title span{
+    font-weight: 700;
+}
+
+.InstructorByCourse .description{
+    line-height: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.InstructorByCourse .buttons{
+    display: flex;
+    gap: 1rem;
+}
+
+.InstructorByCourse .buttons button, .InstructorByCourse .buttons a{
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: black;
+    
+    padding: .8rem 1.6rem;
+    outline: none; border: none;
+    border-radius: 10px;
+    
+    transition: .3s ease-out;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
+    
+}
+
+.InstructorByCourse .buttons button:hover, .InstructorByCourse .buttons a:hover{
+    transform: scale(1.1);
+}
+
+.InstructorByCourse .buttons a{
+    text-decoration: none;
+    background-color: var(--blue);
+}
+
+.InstructorByCourse .buttons button:hover{
+    background-color: var(--blue);
+}
+
+/* Responsivness  */
+
+@media only screen and (max-width: 850px){
+  .InstructorByCourse #btn{
+        display: block;
+    }
+
+   
+
+    .InstructorByCourse .s-container{
+        flex-direction: column;
+        gap: 2rem;
+        padding-bottom: 2rem;
+    }
+    .InstructorByCourse .content{
+        max-width: 80%;
+        text-align: center;
+    }
+
+    .InstructorByCourse .buttons{
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 550px){
+  .InstructorByCourse .content{
+        width: 100%;
+    }
+    .InstructorByCourse  img{
+        width: 300px;
+    }
+   
+}

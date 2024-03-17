@@ -68,7 +68,26 @@ const InstructorByCourse = () => {
           // </div>
           // </>
           <>
-              
+               <div class="s-container">
+            <div class="content">
+                <span class="subtitle">
+                    Hello
+                </span>
+                <h1 class="title">
+                    I'm <span>Ryan <br/></span>a UI/UX Designer
+                </h1>
+                <p class="description">
+                    Welcome to my UI/UX design portfolio! I'm Ryan, a dedicated and imaginative UI/UX designer with a flair for crafting visually appealing and intuitive user experiences. My journey in design has led me to work on diverse projects, from sleek mobile apps to engaging website interfaces.
+                </p>
+                <div class="buttons">
+                    <a href="mailto:exemple@gmail.com">Hire Me</a>
+                    <button>Portfolio</button>
+                </div>
+            </div>
+            <div class="image">
+            <img src="/assets/images/image_2.jpg.webp" alt="" />
+            </div>
+        </div>
           </>
           : null }
       </div>
