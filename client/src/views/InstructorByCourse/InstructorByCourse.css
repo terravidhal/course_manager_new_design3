@@ -4,11 +4,14 @@
 }
 .InstructorByCourse .page-top h1 {
   color: var(--color-theme);
+  visibility: hidden;
 }
 .InstructorByCourse .page-content {
   display: flex;
   gap: 20px;
   align-items: center;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px !important;
 }
 .InstructorByCourse .details-img {
   flex: 1;
@@ -79,26 +82,12 @@
 
 
 
-:root{
-    --bg: #222831;
-    --blue: #00FFF5;
-}
 
 
 
 
-.InstructorByCourse #btn{
-    all: unset;
-    cursor: pointer;
-    transition: .5s ease-out;
 
-    display: none;
-}
 
-.InstructorByCourse #btn:hover{
-    transform: rotate(180deg);
-    color: var(--blue);
-}
 
 .InstructorByCourse .s-container{
     min-height: 80vh;
@@ -113,7 +102,7 @@
 
 .InstructorByCourse img{
     width: 350px;
-    border-radius: 7px;
+    border-radius: 50%;
 }
 
 .InstructorByCourse .content{
@@ -128,64 +117,82 @@
     letter-spacing: 2px;
     font-weight: 600;
     margin-bottom: .5rem;
+    text-align: center;
+    color: #767676;
 }
 
 .InstructorByCourse .title{
     font-size: 2.5rem;
     font-weight: 400;
     line-height: 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
+    color: var(--color-theme);
+  }
+.InstructorByCourse .title2{
+    font-size: 1.5rem;
+    margin-top: 0;
+    font-weight: bold;
+    line-height: 3rem;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #767676;
 }
 
 .InstructorByCourse .title span{
     font-weight: 700;
-}
-
-.InstructorByCourse .description{
-    line-height: 1.5rem;
-    margin-bottom: 2rem;
+    text-transform: capitalize;
 }
 
 .InstructorByCourse .buttons{
     display: flex;
     gap: 1rem;
+    justify-content: center;
+}
+.InstructorByCourse .icons{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+.InstructorByCourse .icons i{
+    cursor: pointer;
+    color: var(--color-theme);
 }
 
-.InstructorByCourse .buttons button, .InstructorByCourse .buttons a{
-    font-size: 1rem;
+.InstructorByCourse .buttons button{
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 2px;
-    color: black;
-    
-    padding: .8rem 1.6rem;
+    padding: .8rem 1.5rem;
     outline: none; border: none;
-    border-radius: 10px;
-    
+    border-radius: 45px;
     transition: .3s ease-out;
     cursor: pointer;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
-    
+    margin-bottom: 20px;
+  }
+  .InstructorByCourse .buttons button.one{
+    border: 1px solid var(--color-theme);
+    background-color: var(--white);
+   /* color: black;*/
+    color: var(--color-theme);
 }
-
-.InstructorByCourse .buttons button:hover, .InstructorByCourse .buttons a:hover{
-    transform: scale(1.1);
-}
-
-.InstructorByCourse .buttons a{
-    text-decoration: none;
-    background-color: var(--blue);
+.InstructorByCourse .buttons button.two{
+  /* background-color: #363636; */
+    background-color: var(--color-theme);
+    color: var(--white);
 }
 
 .InstructorByCourse .buttons button:hover{
-    background-color: var(--blue);
+    transform: scale(1.1);
 }
+
+
 
 /* Responsivness  */
 
 @media only screen and (max-width: 850px){
-  .InstructorByCourse #btn{
-        display: block;
-    }
+ 
 
    
 

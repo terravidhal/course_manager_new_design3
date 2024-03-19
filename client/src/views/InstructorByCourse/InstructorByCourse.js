@@ -20,7 +20,8 @@ const InstructorByCourse = () => {
   const {id} = useParams(); 
   const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false); 
-
+  const [allCoursesSpec, setAllCoursesSpec] = useState([]);
+  const [allReviews, setAllReviews] = useState([]);
   
   
   useEffect(() => {
@@ -32,7 +33,54 @@ const InstructorByCourse = () => {
         })
         .catch( err => console.log(err) );
   }, [id]); 
+
+
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/courses/instructor2/" + id,{withCredentials: true})
+        .then( res => {
+          console.log("u*****5*****",res.data.coursesByInstructor);
+          setAllCoursesSpec(res.data.coursesByInstructor);
+        })
+        .catch( err => console.log(err) );
+  }, [id]); 
+
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/reviews" ,{withCredentials: true})
+        .then( res => {
+          console.log("u**********",res.data.allReviews);
+          setAllReviews(res.data.allReviews);
+        })
+        .catch( err => console.log(err) );
+  }, []); 
+   
+
+  const filterReviewsByCourses = (reviews, courses) => {
+    const filteredReviews = [];
   
+    for (const review of reviews) {
+      let foundMatch = false; // Indicateur de correspondance trouvée
+  
+      for (const course of courses) {
+        if (review.courseId === course._id) {
+          foundMatch = true; // Correspondance trouvée
+          break; // On peut arrêter la recherche dans ce cas
+        }
+      }
+  
+      if (foundMatch) {
+        filteredReviews.push(review); // Ajout de la review au tableau filtré
+      }
+    }
+  
+    return filteredReviews;
+  };
+
+  const filteredReviews = filterReviewsByCourses(allReviews, allCoursesSpec);
+  console.log('filteredReviews', filteredReviews);
+
+ 
   
  
   return(
@@ -57,35 +105,31 @@ const InstructorByCourse = () => {
       </div>  
       <div className="page-content">
           { loaded === true ? 
-          // <>
-          // <div className="details-img">
-          //  <img src="/assets/images/instruct.jfif" alt="" /> 
-          // <img src="/assets/images/image_2.jpg.webp" alt="" />
-          // </div>
-          // <div className="fields">
-          //      <p><span className='infos'>name:</span>&nbsp;{InstructByCourse.name}</p>
-          //      <p><span className='infos'>email:</span>&nbsp;{InstructByCourse.email}</p>
-          // </div>
-          // </>
+          
           <>
-               <div class="s-container">
-            <div class="content">
-                <span class="subtitle">
-                    Hello
+               <div className="s-container">
+            <div className="content">
+                <span className="subtitle">
+                    Hello, I'm
                 </span>
-                <h1 class="title">
-                    I'm <span>Ryan <br/></span>a UI/UX Designer
+                <h1 className="title">
+                     <span>{InstructByCourse.name}<br/></span>
                 </h1>
-                <p class="description">
-                    Welcome to my UI/UX design portfolio! I'm Ryan, a dedicated and imaginative UI/UX designer with a flair for crafting visually appealing and intuitive user experiences. My journey in design has led me to work on diverse projects, from sleek mobile apps to engaging website interfaces.
-                </p>
-                <div class="buttons">
-                    <a href="mailto:exemple@gmail.com">Hire Me</a>
-                    <button>Portfolio</button>
+                <h5 className="title2">
+                     Frontend Developer
+                </h5>
+                
+                <div className="buttons">
+                    <button className="one">{allCoursesSpec.length} courses</button>
+                    <button className="two">{filteredReviews.length} comments</button>
+                </div>
+                <div className="icons">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-github"></i>
                 </div>
             </div>
-            <div class="image">
-            <img src="/assets/images/image_2.jpg.webp" alt="" />
+            <div className="image">
+            <img src="/assets/images/blank-profile.png" alt="" />
             </div>
         </div>
           </>

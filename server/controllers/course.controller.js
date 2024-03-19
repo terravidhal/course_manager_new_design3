@@ -30,6 +30,19 @@ module.exports.findAllCoursesByInstructor = (req, res) => {
     });
 };
 
+module.exports.findAllCoursesByInstructor2 = (req, res) => {
+  const instructorId = req.params.id;
+
+  Course.find({ instructor: instructorId })
+    .sort({ name: 1 })
+    .then((coursesByInstructor) => {
+      res.json({ coursesByInstructor });
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
 // find all courses by specific student
 module.exports.findAllCoursesByStudent = (req, res) => {
   const studentId = req.params.id;

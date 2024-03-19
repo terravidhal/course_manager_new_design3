@@ -5,7 +5,7 @@ const Review = require("../models/review.model");
 
 module.exports = {
 
-    createNewCourse : (req, res) => {
+    createNewReview : (req, res) => {
       Review.create(req.body)
         .then((newlyCreatedReview) => {
           res.json({ newlyCreatedReview });
@@ -24,6 +24,20 @@ module.exports = {
           res.status(400).json(err);
         });
     },
+
+
+    findAllReviews : (req, res) => {
+      Review.find()
+         .sort({ name: 1 })
+         .then((allReviews) => {
+           res.json({ allReviews });
+         })
+         .catch((err) => {
+           res.status(400).json(err);
+         });
+     },
+
+  
   
     findAllReviewBySpecificCourse: async(req, res) => {
         const { courseId } = req.params;
@@ -35,22 +49,43 @@ module.exports = {
             return res.status(400).json({ message: "reviews not found" });
           }
 
-
-         /* const arrayReview = reviews.forEach((review) => {
-            const student = review.studentId;
-            console.log(`Review: ${review.reviewText}, Rating: ${review.rating}`);
-            console.log(`Student: ${student.name}, ${student.department}`);
-          });*/
-      
           res.status(201).json({
             reviews: reviews,
           });
-
           
         } catch (err) {
           console.error(err);
           res.status(400).json({ message: "An error occurred" });
         }
     },
-   
+
+    findAllReviewByManyCourses: async (req, res) => {
+      const { courseIds } = req.params; 
+    
+      try {
+        // $in recherch dns le tableau 'courseIds'
+        const reviews = await Review.find({ courseId: { $in: courseIds } }).populate('studentId');
+    
+        if (!reviews.length) { 
+          return res.status(400).json({ message: "reviews not found" });
+        }
+    
+        // Transform du résultat en tableau de reviews
+     /*   const reviewsData = reviews.map((review) => {
+          return {
+            id: review._id,
+            courseId: review.courseId,
+            studentId: review.studentId,
+            rating: review.rating,
+            reviewText: review.reviewText,
+          };
+        });  */
+        res.status(201).json({
+          reviews: reviews,
+        });
+      } catch (err) {
+        console.error(err);
+        res.status(400).json({ message: "An error occurred" });
+      }
+    },
 };
