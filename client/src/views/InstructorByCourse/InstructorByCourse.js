@@ -56,29 +56,19 @@ const InstructorByCourse = () => {
   }, []); 
    
 
+
   const filterReviewsByCourses = (reviews, courses) => {
-    const filteredReviews = [];
+    // Convert course IDs to an array
+    const courseIds = courses.map(course => course._id);
   
-    for (const review of reviews) {
-      let foundMatch = false; // Indicateur de correspondance trouvée
-  
-      for (const course of courses) {
-        if (review.courseId === course._id) {
-          foundMatch = true; // Correspondance trouvée
-          break; // On peut arrêter la recherche dans ce cas
-        }
-      }
-  
-      if (foundMatch) {
-        filteredReviews.push(review); // Ajout de la review au tableau filtré
-      }
-    }
+    // Filter reviews based on course IDs
+    const filteredReviews = reviews.filter(review => courseIds.includes(review.courseId));
   
     return filteredReviews;
   };
 
   const filteredReviews = filterReviewsByCourses(allReviews, allCoursesSpec);
-  console.log('filteredReviews', filteredReviews);
+  //console.log('filteredReviews', filteredReviews);
 
  
   
